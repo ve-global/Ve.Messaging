@@ -30,7 +30,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
             }
         }
 
-        public static  T ParseMessage<T>(Stream stream) where T : new()
+        public static T Deserialize<T>(Stream stream) where T : new()
         {
             byte[] buffer;
             using (var memoryStream = new MemoryStream())
@@ -47,7 +47,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
             }
         }
 
-        public static T ParseMessage<T>(byte[] buffer) where T : new()
+        public static T Deserialize<T>(byte[] buffer) where T : new()
         {
             using (TMemoryBuffer trans = new TMemoryBuffer(buffer))
             {
