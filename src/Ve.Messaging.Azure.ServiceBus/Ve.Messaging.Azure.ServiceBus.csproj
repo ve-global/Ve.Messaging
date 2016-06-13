@@ -68,6 +68,7 @@
     <Compile Include="Publisher\MessagePublisher.cs" />
     <Compile Include="Publisher\ServiceBusPublisherConfiguration.cs" />
     <Compile Include="Publisher\ServiceBusPublisherStrategy.cs" />
+    <Compile Include="Thrift\ThriftConsumer.cs" />
     <Compile Include="Thrift\ThriftMessage.cs" />
     <Compile Include="Thrift\ThriftPublisher.cs" />
     <Compile Include="Publisher\TopicClientCreator.cs" />

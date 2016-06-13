@@ -12,6 +12,8 @@ using Ve.Messaging.Model;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Serializer;
+using Ve.Messaging.Samples;
+using System.Text;
 
 namespace Ve.Messaging.SampleApp
 {
@@ -36,41 +38,44 @@ namespace Ve.Messaging.SampleApp
             {
                 while (true)
                 {
-                    var messages = consumer.RetrieveMessages(int.MaxValue, 100);
+                    var messages = consumer.RetrieveMessages<HouseDto>(int.MaxValue, 100);
 
                     foreach (var message in messages)
                     {
-                        Console.WriteLine(message.Label);
+                        Console.WriteLine($"House: {message.Content.Name} of {message.Content.Owner}");
                     }
                 }
             });
             Console.ReadLine();
         }
 
-        private static IMessageConsumer GetConsumer()
+        private static ThriftConsumer GetConsumer()
         {
             string primaryConnectionString = ConfigurationManager.AppSettings[YOUR_PRIMARY_CONNECTION_STRING];
             var factory = new ConsumerFactory();
-            return factory.GetCosumer(
+            var consumer = factory.GetCosumer(
                 primaryConnectionString,
-                "testtopic2","",TimeSpan.MaxValue,"testsubsccription", new SimpleSerializer());
+                "testtopic3","",TimeSpan.MaxValue,"testsubsccription", new SimpleSerializer());
+            return new ThriftConsumer(consumer);
+
         }
 
         private static void SendMultipleMessages(ThriftPublisher sender)
         {
             for (int i = 0; i < 10; i++)
             {
-                var house = new House()
+                var house = new HouseDto()
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = i.ToString()
+                    Id = i,
+                    Name = i.ToString(),
+                    Owner = "Mr. " + (char)(i + 65)
                 };
                 var serializer = new BinaryFormatter();
                 var stream = new MemoryStream();
                 serializer.Serialize(stream,house);
                 sender.SendAsync(
-                    new ThriftMessage<House>(house)
-                    { Label = "HouseTest" + i})
+                    new ThriftMessage<HouseDto>(house)
+                    { Label = "HouseTest" + i, SessionId = "House Session"})
                     .Wait();
             }
         }
@@ -93,7 +98,7 @@ namespace Ve.Messaging.SampleApp
                 PrimaryConfiguration = new TopicConfiguration()
                 {
                     ConnectionString = primaryConnectionString,
-                    TopicName = "testtopic2",
+                    TopicName = "testtopic3",
                 },
                 ServiceBusPublisherStrategy = ServiceBusPublisherStrategy.Simple
             });
@@ -118,11 +123,5 @@ namespace Ve.Messaging.SampleApp
             ConfigurationManager.AppSettings["statsd.datacenter"] = "A";
             ConfigurationManager.AppSettings["statsd.host"] = "A";
         }
-    }
-    [Serializable]
-    internal class House
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
     }
 }

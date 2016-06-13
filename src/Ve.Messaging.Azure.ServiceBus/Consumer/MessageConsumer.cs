@@ -19,7 +19,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
             _serializer = serializer;
         }
 
-        public List<Message> RetrieveMessages(int messageAmount, int timeout)
+        public IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout)
         {
             var brokeredMessages = _client.ReceiveBatch(messageAmount, TimeSpan.FromSeconds(timeout));
             var messages = new List<Message>();

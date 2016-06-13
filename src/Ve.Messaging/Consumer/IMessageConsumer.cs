@@ -5,6 +5,6 @@ namespace Ve.Messaging.Consumer
 {
     public interface IMessageConsumer
     {
-        List<Message> RetrieveMessages(int messageAmount, int timeout);
+        IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout);
     }
 }

@@ -15,6 +15,14 @@ namespace Ve.Messaging.Azure.ServiceBus.Thrift
             Content = ThriftSerializer.Deserialize<T>(bodyContent);
         }
 
+        public ThriftMessage(Message message) : base(message.BodyStream)
+        {
+            Content = ThriftSerializer.Deserialize<T>(message.BodyStream);
+            Properties = message.Properties;
+            SessionId = message.SessionId;
+            Label = message.Label;
+        }
+
         public T Content { get; }
     }
 }
