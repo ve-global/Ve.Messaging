@@ -1,4 +1,7 @@
 using System;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Microsoft.ServiceBus.Messaging;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Metrics.StatsDClient.Abstract;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
@@ -9,35 +12,43 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
     public class FailoverPublisherClientResolver : IPublisherClientResolver
     {
         private const string FAILOVER_METRIC = "dependencies.servicebus.failover";
-        private readonly IFailoverResolver _failoverResolver;
-        private readonly ITopicClientWrapper _topicClient;
+        private readonly ITopicClientWrapper _primaryClient;
         private readonly ITopicClientWrapper _failoverClient;
         private readonly IVeStatsDClient _statsDClient;
-
-        public FailoverPublisherClientResolver(IFailoverResolver failoverResolver,
-            ITopicClientWrapper topicClient,
+        public FailoverPublisherClientResolver(
+            ITopicClientWrapper primaryClient,
             ITopicClientWrapper failoverClient,
             IVeStatsDClient statsDClient)
         {
-            _failoverResolver = failoverResolver;
-            _topicClient = topicClient;
+            _primaryClient = primaryClient;
             _failoverClient = failoverClient;
             _statsDClient = statsDClient;
         }
 
         public ITopicClientWrapper GetClient()
         {
-            if (_failoverResolver.IsInFailover)
+            if (_primaryClient.IsHealthy())
             {
                 _statsDClient.LogCount(FAILOVER_METRIC);
+                TryToExitFailover();
                 return _failoverClient;
             }
-            return _topicClient;
+            return _primaryClient;
+        }
+
+        private void TryToExitFailover()
+        {
+            Task.Run(() =>
+            {
+                var t = _primaryClient.SendAsync(new BrokeredMessage());
+                t.Wait();
+            });
         }
 
         public void ReportFailure(ITopicClientWrapper wrapper, Message message, Exception ex = null)
         {
-            _failoverResolver.ReportException();
+
         }
+
     }
 }

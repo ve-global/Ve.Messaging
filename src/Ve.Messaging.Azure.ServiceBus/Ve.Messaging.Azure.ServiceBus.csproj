@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Consumer\ConsumerFactory.cs" />
     <Compile Include="Consumer\MessageConsumer.cs" />
-    <Compile Include="Executors\FailoverExecutor.cs" />
     <Compile Include="Executors\ITimer.cs" />
     <Compile Include="Executors\TimerWrapper.cs" />
     <Compile Include="Infrastructure\BrokeredMessageBuilder.cs" />
@@ -74,9 +73,7 @@
     <Compile Include="Publisher\TopicClientCreator.cs" />
     <Compile Include="Publisher\TopicCreator.cs" />
     <Compile Include="Publisher\FailoverPublisherClientResolver.cs" />
-    <Compile Include="Infrastructure\FailoverResolver.cs" />
     <Compile Include="Publisher\IPublisherClientResolver.cs" />
-    <Compile Include="Infrastructure\IFailoverResolver.cs" />
     <Compile Include="Publisher\Wrapper\ITopicClientWrapper.cs" />
     <Compile Include="Publisher\SimplePublisherClientResolver.cs" />
     <Compile Include="Publisher\Wrapper\TopicClientWrapper.cs" />

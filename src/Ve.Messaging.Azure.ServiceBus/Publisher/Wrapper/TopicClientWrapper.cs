@@ -10,6 +10,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper
     {
         private readonly TopicClient _topicClient;
         private readonly IVeStatsDClient _statsd;
+        private static bool _isHealthy = true;
 
         public TopicClientWrapper(TopicClient topicClient, IVeStatsDClient statsd)
         {
@@ -23,10 +24,23 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper
             _statsd.LogCount("dependencies.servicebus.send");
             _statsd.LogGauge("dependencies.servicebus.messagesize", (int)message.Size);
 
-            await _topicClient.SendAsync(message).ConfigureAwait(false);
+            try
+            {
+                await _topicClient.SendAsync(message).ConfigureAwait(false);
+                _isHealthy = true;
+            }
+            catch (Exception)
+            {
+                _isHealthy = false;
+            }
 
             stopwatch.Stop();
             _statsd.LogTiming("dependencies.servicebus.send", stopwatch.ElapsedMilliseconds);
+        }
+
+        public bool IsHealthy()
+        {
+            return _isHealthy;
         }
     }
 }

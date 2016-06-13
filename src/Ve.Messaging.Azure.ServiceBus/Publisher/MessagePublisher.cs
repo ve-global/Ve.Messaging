@@ -22,9 +22,10 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
         public async Task SendAsync(Message message)
         {
             var topicClient = _publisherClientResolver.GetClient();
+            var brokeredMessage = BrokeredMessageBuilder.SerializeToBrokeredMessage(message);
+
             try
             {
-                var brokeredMessage = BrokeredMessageBuilder.SerializeToBrokeredMessage(message);
                 await topicClient.SendAsync(brokeredMessage).ConfigureAwait(false);
             }
             catch (Exception ex)

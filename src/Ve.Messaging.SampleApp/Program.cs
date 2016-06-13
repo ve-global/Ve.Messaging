@@ -4,16 +4,11 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Ve.Metrics.StatsDClient;
-using Ve.Messaging.Consumer;
 using Ve.Messaging.Azure.ServiceBus.Consumer;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
-using Ve.Messaging.Publisher;
-using Ve.Messaging.Model;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Serializer;
 using Ve.Messaging.Samples;
-using System.Text;
 
 namespace Ve.Messaging.SampleApp
 {
@@ -84,7 +79,6 @@ namespace Ve.Messaging.SampleApp
         {
             var publisherFactory = new PublisherFactory(
                 client,
-                new FailoverResolver(),
                 new TopicClientCreator(new TopicCreator())
                 );
             return publisherFactory;

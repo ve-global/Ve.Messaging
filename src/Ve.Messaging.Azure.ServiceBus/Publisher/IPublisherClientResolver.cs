@@ -7,6 +7,6 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
     public interface IPublisherClientResolver
     {
         ITopicClientWrapper GetClient();
-        void ReportFailure(ITopicClientWrapper wrapper,Message message, Exception ex = null);
+        void ReportFailure(ITopicClientWrapper wrapper, Message message, Exception ex = null);
     }
 }

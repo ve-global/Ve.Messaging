@@ -1,23 +1,17 @@
 ﻿using System;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Publisher;
 using Ve.Metrics.StatsDClient.Abstract;
-using ISerializer = Ve.Messaging.Serializer.ISerializer;
 
 namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public class PublisherFactory
     {
         private readonly IVeStatsDClient _statsDClient;
-        private readonly IFailoverResolver _failoverResolver;
         private readonly ITopicClientCreator _topicClientCreator;
 
-        public PublisherFactory(IVeStatsDClient statsDClient,
-            IFailoverResolver failoverResolver,
-            ITopicClientCreator topicClientCreator)
+        public PublisherFactory(IVeStatsDClient statsDClient, ITopicClientCreator topicClientCreator)
         {
             _statsDClient = statsDClient;
-            _failoverResolver = failoverResolver;
             _topicClientCreator = topicClientCreator;
         }
 
@@ -57,7 +51,6 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
                 _statsDClient);
 
             var failoverPublisher = new FailoverPublisherClientResolver(
-                _failoverResolver,
                 primaryTopicClient,
                 failoverTopicClient,
                 _statsDClient);
