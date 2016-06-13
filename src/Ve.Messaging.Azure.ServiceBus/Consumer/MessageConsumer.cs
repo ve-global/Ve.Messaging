@@ -26,13 +26,15 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 
             foreach (var brokeredMessage in brokeredMessages)
             {
-                Message message = new Message();
-
                 var stream = brokeredMessage.GetBody<Stream>();
-                message.Content = _serializer.ParseMessage<object>(stream);
-                message.Label = brokeredMessage.Label;
-                message.SessionId = brokeredMessage.SessionId;
-                message.Properties = new Dictionary<string, object>(brokeredMessage.Properties);
+                Message message = new Message(stream)
+                {
+                    Label = brokeredMessage.Label,
+                    SessionId = brokeredMessage.SessionId,
+                    Properties = new Dictionary<string, object>(brokeredMessage.Properties)
+                };
+
+
                 messages.Add(message);
             }
 

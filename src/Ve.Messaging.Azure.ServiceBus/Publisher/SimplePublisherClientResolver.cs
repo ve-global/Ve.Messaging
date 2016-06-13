@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
 using Ve.Messaging.Model;
 
-namespace Ve.Messaging.Azure.ServiceBus.Core.Wrapper
+namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public class SimplePublisherClientResolver : IPublisherClientResolver
     {

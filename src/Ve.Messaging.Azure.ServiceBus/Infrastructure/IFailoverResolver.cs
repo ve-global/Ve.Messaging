@@ -1,4 +1,4 @@
-﻿namespace Ve.Messaging.Azure.ServiceBus.Publisher
+﻿namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
 {
     public interface IFailoverResolver
     {

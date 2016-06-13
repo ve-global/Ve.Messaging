@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Ve.Metrics.StatsDClient;
-using Ve.Messaging.Azure.ServiceBus.Core;
 using Ve.Messaging.Consumer;
 using Ve.Messaging.Azure.ServiceBus.Consumer;
+using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Publisher;
 using Ve.Messaging.Model;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
+using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Serializer;
 
 namespace Ve.Messaging.SampleApp
@@ -53,7 +56,7 @@ namespace Ve.Messaging.SampleApp
                 "testtopic2","",TimeSpan.MaxValue,"testsubsccription", new SimpleSerializer());
         }
 
-        private static void SendMultipleMessages(IMessagePublisher sender)
+        private static void SendMultipleMessages(ThriftPublisher sender)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -62,7 +65,13 @@ namespace Ve.Messaging.SampleApp
                     Id = Guid.NewGuid().ToString(),
                     Name = i.ToString()
                 };
-                sender.SendAsync(new Message() {Content = house, Label = "HouseTest" + i}).Wait();
+                var serializer = new BinaryFormatter();
+                var stream = new MemoryStream();
+                serializer.Serialize(stream,house);
+                sender.SendAsync(
+                    new ThriftMessage<House>(house)
+                    { Label = "HouseTest" + i})
+                    .Wait();
             }
         }
 
@@ -71,13 +80,12 @@ namespace Ve.Messaging.SampleApp
             var publisherFactory = new PublisherFactory(
                 client,
                 new FailoverResolver(),
-                new SimpleSerializer(),
                 new TopicClientCreator(new TopicCreator())
                 );
             return publisherFactory;
         }
 
-        private static IMessagePublisher GetSender(PublisherFactory publisherFactory)
+        private static ThriftPublisher GetSender(PublisherFactory publisherFactory)
         {
             string primaryConnectionString = ConfigurationManager.AppSettings[YOUR_PRIMARY_CONNECTION_STRING];
             var sender = publisherFactory.CreatePublisher(new ServiceBusPublisherConfiguration()
@@ -89,7 +97,8 @@ namespace Ve.Messaging.SampleApp
                 },
                 ServiceBusPublisherStrategy = ServiceBusPublisherStrategy.Simple
             });
-            return sender;
+            var publisher = new ThriftPublisher(sender);
+            return publisher;
         }
 
         private static StatsdConfig InstantiateStatsdConfig()

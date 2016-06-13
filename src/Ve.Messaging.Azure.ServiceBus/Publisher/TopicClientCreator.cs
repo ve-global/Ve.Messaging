@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
-using Ve.Metrics.StatsDClient.Abstract;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
-using Ve.Messaging.Azure.ServiceBus.Publisher;
+using Ve.Metrics.StatsDClient.Abstract;
 
-namespace Ve.Messaging.Azure.ServiceBus.Core
+namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public class TopicClientCreator : ITopicClientCreator
     {

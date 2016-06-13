@@ -1,34 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-using Ve.Metrics.StatsDClient.Abstract;
-using Ve.Messaging.Azure.ServiceBus.Core.Wrapper;
-using Ve.Messaging.Azure.ServiceBus.Publisher;
-using Ve.Messaging.Serializer;
+using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Publisher;
+using Ve.Metrics.StatsDClient.Abstract;
+using ISerializer = Ve.Messaging.Serializer.ISerializer;
 
-namespace Ve.Messaging.Azure.ServiceBus.Core
+namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public class PublisherFactory
     {
         private readonly IVeStatsDClient _statsDClient;
         private readonly IFailoverResolver _failoverResolver;
-        private readonly ISerializer _serializer;
         private readonly ITopicClientCreator _topicClientCreator;
 
         public PublisherFactory(IVeStatsDClient statsDClient,
             IFailoverResolver failoverResolver,
-            ISerializer serializer,
             ITopicClientCreator topicClientCreator)
         {
             _statsDClient = statsDClient;
             _failoverResolver = failoverResolver;
-            _serializer = serializer;
             _topicClientCreator = topicClientCreator;
         }
 
@@ -56,7 +45,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Core
             var simpleTopicClient = _topicClientCreator.CreateTopicClient(config.PrimaryConfiguration,
                 _statsDClient);
             var resolver = new SimplePublisherClientResolver(simpleTopicClient);
-            return new MessagePublisher(resolver, _serializer);
+            return new MessagePublisher(resolver);
         }
 
         private IMessagePublisher GetFailoverMessagePublisher(ServiceBusPublisherConfiguration config)
@@ -73,7 +62,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Core
                 failoverTopicClient,
                 _statsDClient);
 
-           return new MessagePublisher(failoverPublisher, _serializer);
+           return new MessagePublisher(failoverPublisher);
         }
     }
 }

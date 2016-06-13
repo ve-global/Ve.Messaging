@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4BABA
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ve.Messaging.Azure.ServiceBus.Tests.Integration", "Ve.Messaging.Azure.ServiceBus.Tests.Integration\Ve.Messaging.Azure.ServiceBus.Tests.Integration.csproj", "{4926C632-5262-4864-AE10-F0520E6D671D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F099620-068C-4E31-9D29-7C3D64087FB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ve.Messaging.SampleApp", "Ve.Messaging.SampleApp\Ve.Messaging.SampleApp.csproj", "{2532CFDA-7A02-49EF-B860-CC1D89680089}"
@@ -34,10 +32,6 @@ Global
 		{6E721311-5D76-452F-8CF9-B19D5D54F62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E721311-5D76-452F-8CF9-B19D5D54F62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E721311-5D76-452F-8CF9-B19D5D54F62E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4926C632-5262-4864-AE10-F0520E6D671D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4926C632-5262-4864-AE10-F0520E6D671D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4926C632-5262-4864-AE10-F0520E6D671D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4926C632-5262-4864-AE10-F0520E6D671D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2532CFDA-7A02-49EF-B860-CC1D89680089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2532CFDA-7A02-49EF-B860-CC1D89680089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2532CFDA-7A02-49EF-B860-CC1D89680089}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,8 +39,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4926C632-5262-4864-AE10-F0520E6D671D} = {7F099620-068C-4E31-9D29-7C3D64087FB3}
 	EndGlobalSection
 EndGlobal

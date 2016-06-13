@@ -1,4 +1,4 @@
-namespace Ve.Messaging.Azure.ServiceBus.Core
+namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public interface ITopicCreator
     {

@@ -2,7 +2,7 @@ using System;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
-namespace Ve.Messaging.Azure.ServiceBus.Core
+namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
     public class TopicCreator : ITopicCreator
     {

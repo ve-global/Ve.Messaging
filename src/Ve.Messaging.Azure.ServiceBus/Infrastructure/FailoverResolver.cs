@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Ve.Messaging.Azure.ServiceBus.Publisher
+namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
 {
     public class FailoverResolver : IFailoverResolver
     {

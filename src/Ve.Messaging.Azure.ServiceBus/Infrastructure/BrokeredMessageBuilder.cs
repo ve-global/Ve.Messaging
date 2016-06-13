@@ -7,11 +7,12 @@ namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
     {
         public static BrokeredMessage SerializeToBrokeredMessage(Message message)
         {
-            var bodyStream = ThriftSerializer.Serialize<Message>(message.Content);
-            var brokeredMessage = new BrokeredMessage(bodyStream);
-            brokeredMessage.SessionId = message.SessionId;
-            brokeredMessage.Label = message.Label;
-            
+            var brokeredMessage = new BrokeredMessage(message.BodyStream)
+            {
+                SessionId = message.SessionId,
+                Label = message.Label
+            };
+
             AddProperties(message, brokeredMessage);
             return brokeredMessage;
         }
