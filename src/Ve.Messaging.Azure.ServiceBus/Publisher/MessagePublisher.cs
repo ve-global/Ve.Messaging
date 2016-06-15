@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Publisher;
-using Ve.Messaging.Serializer;
+
 using Ve.Messaging.Model;
 
 namespace Ve.Messaging.Azure.ServiceBus.Publisher

@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Ve.Messaging.Consumer;
-using Ve.Messaging.Serializer;
 
 namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class ConsumerFactory
     {
-        public IMessageConsumer GetCosumer(string conectionString, string topicPath,string sqlFilter, TimeSpan timeToExpire,string subscriptionName, ISerializer serializer)
+        public IMessageConsumer GetCosumer(string conectionString, string topicPath,string subscriptionName,TimeSpan? timeToExpire = null, string sqlFilter = null)
         {
+            if(!timeToExpire.HasValue)
+            {
+                timeToExpire = TimeSpan.MaxValue;
+            }
             var namespaceManager = NamespaceManager.CreateFromConnectionString(conectionString);
-            var description = GetSubscriptionDescription(topicPath, subscriptionName, timeToExpire);
+            var description = GetSubscriptionDescription(topicPath, subscriptionName, timeToExpire.Value);
             
             var client = GetSubscriptionClient(topicPath, subscriptionName, namespaceManager, description);
-            var result = new MessageConsumer(client,serializer);
+            var result = new MessageConsumer(client);
             return result;
         }
 
