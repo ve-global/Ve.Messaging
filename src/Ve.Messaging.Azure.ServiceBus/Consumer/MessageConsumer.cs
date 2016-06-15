@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using System.IO;
 using Ve.Messaging.Consumer;
 using Ve.Messaging.Model;
-using Ve.Messaging.Serializer;
+
 
 namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class MessageConsumer : IMessageConsumer
     {
         private readonly SubscriptionClient _client;
-        private readonly ISerializer _serializer;
 
-        public MessageConsumer(SubscriptionClient client, ISerializer serializer)
+        public MessageConsumer(SubscriptionClient client)
         {
             _client = client;
-            _serializer = serializer;
         }
 
         public IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout)

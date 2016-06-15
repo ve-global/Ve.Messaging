@@ -30,8 +30,6 @@ var statsdConfig = InstantiateStatsdConfig();
 var client  = new VeStatsDClient(statsdConfig);
 var publisherFactory = new PublisherFactory(
                 client,
-                new FailoverResolver(),
-                new SimpleSerializer(),
                 new TopicClientCreator(new TopicCreator())
                 );
 
@@ -39,11 +37,22 @@ var sender = publisherFactory.CreatePublisher(new ServiceBusPublisherConfigurati
             {
                 PrimaryConfiguration = new TopicConfiguration()
                 {
-                    ConnectionString =
-                        "YOUR CONNECTION STRING",
+                    ConnectionString = "YOUR CONNECTION STRING",
                     TopicName = "YOUR TOPIC NAME",
                 },
                 ServiceBusPublisherStrategy = ServiceBusPublisherStrategy.Simple
             });
 ```
 
+
+## Creating the consumer for Azure ServiceBus
+
+To create the consumer for azure service bus you need to use a code similar to:
+
+```csharp
+var factory = new ConsumerFactory();
+var consumer = factory.GetCosumer(
+    "YOUR CONNECTION STRING",
+    "YOUR TOPIC NAME",
+    "YOUR SUBSCRIPTION NAME")
+```
