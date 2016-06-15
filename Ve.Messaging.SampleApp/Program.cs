@@ -7,7 +7,7 @@ using Ve.Metrics.StatsDClient;
 using Ve.Messaging.Azure.ServiceBus.Consumer;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
-using Ve.Messaging.Serializer;
+
 using Ve.Messaging.Samples;
 
 namespace Ve.Messaging.SampleApp
@@ -48,9 +48,11 @@ namespace Ve.Messaging.SampleApp
         {
             string primaryConnectionString = ConfigurationManager.AppSettings[YOUR_PRIMARY_CONNECTION_STRING];
             var factory = new ConsumerFactory();
+            var topicName = "testtopic3";
+            var subscriptionName = "testsubsccription";
             var consumer = factory.GetCosumer(
                 primaryConnectionString,
-                "testtopic3","",TimeSpan.MaxValue,"testsubsccription", new SimpleSerializer());
+                topicName,subscriptionName);
             return new ThriftConsumer(consumer);
 
         }
