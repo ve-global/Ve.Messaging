@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/fx74ng2v6k0uuoc2/branch/master?svg=true)](https://ci.appveyor.com/project/diegoluiz/ve-messaging/branch/master)
+
 # Ve.Messaging
 One abstraction layer for messaging transport to apply the better practices on azure
 
