@@ -7,15 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ve.Messaging", "Ve.Messagin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ve.Messaging.Azure.ServiceBus", "Ve.Messaging.Azure.ServiceBus\Ve.Messaging.Azure.ServiceBus.csproj", "{6E721311-5D76-452F-8CF9-B19D5D54F62E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4BABA73-D013-41C9-B8E5-673D2E66BD5F}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F099620-068C-4E31-9D29-7C3D64087FB3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ve.Messaging.SampleApp", "Ve.Messaging.SampleApp\Ve.Messaging.SampleApp.csproj", "{2532CFDA-7A02-49EF-B860-CC1D89680089}"
 EndProject
 Global

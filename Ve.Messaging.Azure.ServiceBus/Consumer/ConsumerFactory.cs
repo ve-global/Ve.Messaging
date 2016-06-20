@@ -12,7 +12,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class ConsumerFactory
     {
-        public IMessageConsumer GetCosumer(string conectionString, string topicPath,string sqlFilter, TimeSpan timeToExpire,string subscriptionName, ISerializer serializer)
+        public IMessageConsumer GetConsumer(string conectionString, string topicPath,string sqlFilter, TimeSpan timeToExpire,string subscriptionName, ISerializer serializer)
         {
             var namespaceManager = NamespaceManager.CreateFromConnectionString(conectionString);
             var description = GetSubscriptionDescription(topicPath, subscriptionName, timeToExpire);
