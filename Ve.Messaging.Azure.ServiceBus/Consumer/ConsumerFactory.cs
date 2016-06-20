@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Consumer;
-using Ve.Messaging.Serializer;
 
 namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class ConsumerFactory
     {
-        public IMessageConsumer GetConsumer(string conectionString, string topicPath,string sqlFilter, TimeSpan timeToExpire,string subscriptionName, ISerializer serializer)
+        public IMessageConsumer GetConsumer(ConsumerConfiguration consumerConfiguration)
         {
-            var namespaceManager = NamespaceManager.CreateFromConnectionString(conectionString);
-            var description = GetSubscriptionDescription(topicPath, subscriptionName, timeToExpire);
+            var namespaceManager = NamespaceManager.CreateFromConnectionString(consumerConfiguration.ConectionString);
+            var description = GetSubscriptionDescription(consumerConfiguration.TopicPath, consumerConfiguration.SubscriptionName, consumerConfiguration.TimeToExpire);
             
-            var client = GetSubscriptionClient(topicPath, subscriptionName, namespaceManager, description);
-            var result = new MessageConsumer(client,serializer);
+            var client = GetSubscriptionClient(consumerConfiguration.TopicPath, consumerConfiguration.SubscriptionName, namespaceManager, description, consumerConfiguration.SqlFilter);
+            var result = new MessageConsumer(client);
             return result;
         }
 
@@ -38,8 +34,9 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
             return GetSubscriptionClient(topicName, subscriptionName, namespaceManager);
         }
 
-        private static void CreateSubscriptionIfNotExists(NamespaceManager namespaceManager, SubscriptionDescription description,
-            string sqlFilter)
+        private static void CreateSubscriptionIfNotExists(NamespaceManager namespaceManager,
+                                                          SubscriptionDescription description,
+                                                          string sqlFilter)
         {
             if (string.IsNullOrWhiteSpace(sqlFilter))
             {
@@ -66,14 +63,14 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 
 
         private static SubscriptionDescription GetSubscriptionDescription(string topicName,
-                                                                   string subscriptionName,
-                                                                   TimeSpan timeToExpire)
+                                                                          string subscriptionName,
+                                                                          TimeSpan? timeToExpire)
         {
             return new SubscriptionDescription(topicName, subscriptionName)
             {
                 EnableDeadLetteringOnMessageExpiration = false,
                 EnableDeadLetteringOnFilterEvaluationExceptions = false,
-                DefaultMessageTimeToLive = timeToExpire,
+                DefaultMessageTimeToLive = timeToExpire ?? TimeSpan.FromDays(4)
             };
         }
     }
