@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Ve.Metrics.StatsDClient;
 using Ve.Messaging.Azure.ServiceBus.Consumer;
+using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Serializer;
@@ -48,9 +49,7 @@ namespace Ve.Messaging.SampleApp
         {
             string primaryConnectionString = ConfigurationManager.AppSettings[YOUR_PRIMARY_CONNECTION_STRING];
             var factory = new ConsumerFactory();
-            var consumer = factory.GetConsumer(
-                primaryConnectionString,
-                "testtopic3","",TimeSpan.MaxValue,"testsubsccription", new SimpleSerializer());
+            var consumer = factory.GetConsumer(new ConsumerConfiguration(primaryConnectionString, "testtopic3", "", TimeSpan.MaxValue, "testsubsccription"));
             return new ThriftConsumer(consumer);
 
         }
