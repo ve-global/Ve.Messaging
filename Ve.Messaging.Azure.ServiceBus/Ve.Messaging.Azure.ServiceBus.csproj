@@ -58,6 +58,7 @@
     <Compile Include="Executors\ITimer.cs" />
     <Compile Include="Executors\TimerWrapper.cs" />
     <Compile Include="Infrastructure\BrokeredMessageBuilder.cs" />
+    <Compile Include="Consumer\ConsumerConfiguration.cs" />
     <Compile Include="Infrastructure\ISerializer.cs" />
     <Compile Include="Infrastructure\ThriftSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
