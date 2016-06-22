@@ -14,6 +14,8 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal 
+test_script:
+  - nunit-console Ve.Messaging.Tests\bin\Release\Ve.Messaging.Tests.dll
 artifacts:
 - path: Ve.Messaging.*.nupkg
   name: NuGet Package

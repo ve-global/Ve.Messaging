@@ -5,13 +5,19 @@ namespace Ve.Messaging.Model
 {
     public class Message
     {
-        public Message(Stream bodyStream)
+        public Message(Stream bodyStream,
+                       string sessionId = "",
+                       string label = "",
+                       IDictionary<string, object> properties = null)
         {
             BodyStream = bodyStream;
+            SessionId = sessionId;
+            Label = label;
+            Properties = properties;
         }
-        public Stream BodyStream { get; set; }
-        public string Label { get; set; }
-        public string SessionId { get; set; }
-        public Dictionary<string, object> Properties { get; set; } 
+        public Stream BodyStream { get; }
+        public string Label { get; }
+        public string SessionId { get; }
+        public IDictionary<string, object> Properties { get; } 
     }
 }

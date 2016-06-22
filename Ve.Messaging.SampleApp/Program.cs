@@ -68,8 +68,7 @@ namespace Ve.Messaging.SampleApp
                 var stream = new MemoryStream();
                 serializer.Serialize(stream,house);
                 sender.SendAsync(
-                    new ThriftMessage<HouseDto>(house)
-                    { Label = "HouseTest" + i, SessionId = "House Session"})
+                    new ThriftMessage<HouseDto>(house, "House Session", "HouseTest_Label"))
                     .Wait();
             }
         }
