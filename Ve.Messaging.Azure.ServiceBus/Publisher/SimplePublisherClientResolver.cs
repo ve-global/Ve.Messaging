@@ -19,6 +19,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
 
         public void ReportFailure(ITopicClientWrapper wrapper, Message message, Exception ex = null)
         {
+            if (ex != null) throw ex;
         }
     }
 }
