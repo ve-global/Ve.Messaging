@@ -1,5 +1,6 @@
 version: 0.1.{build}
 configuration: Release
+skip_tags: true
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -27,4 +28,9 @@ deploy:
     secure: 9VQU1tM1eJOhWwZvwKm00ndEGr+GPyeYm49nWZPWDDmNvKYe4z+mmeGtHe+R9GDh 
   skip_symbols: false
   artifact: /.*\.nupkg/
+on_success:
+    - git config --global credential.helper store
+    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:git_token):x-oauth-basic@github.com`n"
+    - git tag -a release/%APPVEYOR_BUILD_VERSION% -m "Added tag"
+    - git push origin release/%APPVEYOR_BUILD_VERSION%
 
