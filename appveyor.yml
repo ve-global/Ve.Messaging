@@ -1,6 +1,9 @@
 version: 0.1.{build}
 configuration: Release
 skip_tags: true
+environment:
+    git_token:
+        secure: zOalLNVugkdAgWERo3MRA2k/t1RAgaVvnCjR6lFsh2/i3Zwy45h7lT3T9pSTuigo
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
