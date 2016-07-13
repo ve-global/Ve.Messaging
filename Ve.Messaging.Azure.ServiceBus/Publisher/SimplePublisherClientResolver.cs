@@ -1,4 +1,5 @@
 ﻿using System;
+using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
 using Ve.Messaging.Model;
 

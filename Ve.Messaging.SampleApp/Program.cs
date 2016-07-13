@@ -8,7 +8,6 @@ using Ve.Messaging.Azure.ServiceBus.Consumer;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
-using Ve.Messaging.Serializer;
 using Ve.Messaging.Samples;
 
 namespace Ve.Messaging.SampleApp
@@ -54,7 +53,7 @@ namespace Ve.Messaging.SampleApp
 
         }
 
-        private static void SendMultipleMessages(ThriftPublisher sender)
+        private static void SendMultipleMessages(IThriftPublisher sender)
         {
             for (int i = 0; i < 10; i++)
             {

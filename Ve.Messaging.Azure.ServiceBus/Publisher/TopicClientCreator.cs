@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
 using Ve.Metrics.StatsDClient.Abstract;
 

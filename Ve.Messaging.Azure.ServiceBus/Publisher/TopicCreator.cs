@@ -1,6 +1,7 @@
 using System;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 
 namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
