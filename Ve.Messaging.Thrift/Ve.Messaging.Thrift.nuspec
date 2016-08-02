@@ -12,6 +12,9 @@
     <copyright>Copyright 2016</copyright>
     <releaseNotes>See CHANGELOG.md in the project's GitHub repository.</releaseNotes>
     <tags>messaging</tags>
-    <dependencies />
+    <dependencies>
+	  <dependency id="Ve.Messaging" version="$version$" />
+	  <dependency id="Thrift" version="0.9.13" />
+	</dependencies>
   </metadata>
 </package>
