@@ -1,7 +1,7 @@
-using Ve.Metrics.StatsDClient.Abstract;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
+using Ve.Metrics.StatsDClient.Abstract;
 
-namespace Ve.Messaging.Azure.ServiceBus.Publisher
+namespace Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces
 {
     public interface ITopicClientCreator
     {

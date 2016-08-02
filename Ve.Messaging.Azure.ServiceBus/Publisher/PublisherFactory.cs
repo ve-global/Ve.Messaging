@@ -1,10 +1,11 @@
 ﻿using System;
+using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 using Ve.Messaging.Publisher;
 using Ve.Metrics.StatsDClient.Abstract;
 
 namespace Ve.Messaging.Azure.ServiceBus.Publisher
 {
-    public class PublisherFactory
+    public class PublisherFactory : IPublisherFactory
     {
         private readonly IVeStatsDClient _statsDClient;
         private readonly ITopicClientCreator _topicClientCreator;

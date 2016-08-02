@@ -1,8 +1,7 @@
 using System;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
+using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 using Ve.Metrics.StatsDClient.Abstract;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
 using Ve.Messaging.Model;

@@ -2,7 +2,7 @@
 using Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper;
 using Ve.Messaging.Model;
 
-namespace Ve.Messaging.Azure.ServiceBus.Publisher
+namespace Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces
 {
     public interface IPublisherClientResolver
     {

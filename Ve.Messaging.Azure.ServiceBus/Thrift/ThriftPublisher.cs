@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Ve.Messaging.Model;
 using Ve.Messaging.Publisher;
 
 namespace Ve.Messaging.Azure.ServiceBus.Thrift
 {
-    public class ThriftPublisher
+    public class ThriftPublisher : IThriftPublisher
     {
         private readonly IMessagePublisher _publisher;
 
