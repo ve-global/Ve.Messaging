@@ -48,7 +48,7 @@ namespace Ve.Messaging.SampleApp
         {
             string primaryConnectionString = ConfigurationManager.AppSettings[YOUR_PRIMARY_CONNECTION_STRING];
             var factory = new ConsumerFactory();
-            var consumer = factory.GetConsumer(new ConsumerConfiguration(primaryConnectionString, "testtopic3", "", TimeSpan.MaxValue, "testsubsccription"));
+            var consumer = factory.GetConsumer(new ConsumerConfiguration(primaryConnectionString, "testtopic3", "testsubsccription", TimeSpan.MaxValue));
             return new ThriftConsumer(consumer);
 
         }
