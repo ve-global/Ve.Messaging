@@ -14,7 +14,7 @@
     <tags>messaging</tags>
     <dependencies>
 	  <dependency id="Ve.Messaging" version="$version$" />
-	  <dependency id="Thrift" version="0.9.13" />
+	  <dependency id="Thrift" version="0.9.1.3" />
 	</dependencies>
   </metadata>
 </package>
