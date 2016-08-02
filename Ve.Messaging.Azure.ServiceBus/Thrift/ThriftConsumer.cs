@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces;
 using Ve.Messaging.Consumer;
 using Ve.Messaging.Thrift;
 

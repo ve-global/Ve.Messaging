@@ -8,6 +8,7 @@ using Ve.Messaging.Azure.ServiceBus.Consumer;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
+using Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces;
 using Ve.Messaging.Samples;
 using Ve.Messaging.Thrift;
 
