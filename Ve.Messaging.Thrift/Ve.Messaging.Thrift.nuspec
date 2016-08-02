@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Ve messaging thrift package</title>
+    <authors>Diego Luiz, Juanjo Cerezuela, Gabriel Nepomuceno</authors>
+    <owners>Ve Interactive</owners>
+    <projectUrl>https://github.com/ve-interactive/Ve.Messaging</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the utility classes for Thrift</description>
+    <copyright>Copyright 2016</copyright>
+    <releaseNotes>See CHANGELOG.md in the project's GitHub repository.</releaseNotes>
+    <tags>messaging</tags>
+    <dependencies>
+	  <dependency id="Ve.Messaging" version="$version$" />
+	  <dependency id="Thrift" version="0.9.13" />
+	</dependencies>
+  </metadata>
+</package>

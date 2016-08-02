@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Ve.Messaging.Thrift;
 
-namespace Ve.Messaging.Azure.ServiceBus.Thrift
+namespace Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces
 {
     public interface IThriftPublisher
     {

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
 using Ve.Messaging.Publisher;
-using Ve.Messaging.Serializer;
 using Ve.Messaging.Model;
 
 namespace Ve.Messaging.Azure.ServiceBus.Publisher

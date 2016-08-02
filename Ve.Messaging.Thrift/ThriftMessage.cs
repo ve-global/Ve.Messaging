@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Model;
 
-namespace Ve.Messaging.Azure.ServiceBus.Thrift
+namespace Ve.Messaging.Thrift
 {
     public class ThriftMessage<T> : Message where T : new()
     {

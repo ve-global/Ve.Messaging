@@ -2,7 +2,7 @@
 using Thrift.Protocol;
 using Thrift.Transport;
 
-namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
+namespace Ve.Messaging.Thrift
 {
     public static class ThriftSerializer 
     {

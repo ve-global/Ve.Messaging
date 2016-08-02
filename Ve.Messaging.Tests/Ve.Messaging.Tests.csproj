@@ -67,6 +67,10 @@
       <Project>{2532cfda-7a02-49ef-b860-cc1d89680089}</Project>
       <Name>Ve.Messaging.SampleApp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ve.Messaging.Thrift\Ve.Messaging.Thrift.csproj">
+      <Project>{20D03F2E-1BC9-4A3E-9CCC-12B52EE3A100}</Project>
+      <Name>Ve.Messaging.Thrift</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ve.Messaging\Ve.Messaging.csproj">
       <Project>{611aa996-567c-4e6b-a8d3-de487e305030}</Project>
       <Name>Ve.Messaging</Name>
