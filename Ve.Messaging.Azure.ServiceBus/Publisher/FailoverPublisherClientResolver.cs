@@ -28,11 +28,11 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
         {
             if (_primaryClient.IsHealthy())
             {
-                _statsDClient.LogCount(FAILOVER_METRIC);
-                TryToExitFailover();
-                return _failoverClient;
+                return _primaryClient;
             }
-            return _primaryClient;
+            _statsDClient.LogCount(FAILOVER_METRIC);
+            TryToExitFailover();
+            return _failoverClient;
         }
 
         private void TryToExitFailover()
