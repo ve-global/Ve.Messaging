@@ -84,6 +84,10 @@
     <None Include="ThriftNeeds\Processed-Models-v1.thrift" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ve.Messaging.Thrift\Ve.Messaging.Thrift.csproj">
+      <Project>{20d03f2e-1bc9-4a3e-9ccc-12b52ee3a100}</Project>
+      <Name>Ve.Messaging.Thrift</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ve.Messaging\Ve.Messaging.csproj">
       <Project>{611aa996-567c-4e6b-a8d3-de487e305030}</Project>
       <Name>Ve.Messaging</Name>

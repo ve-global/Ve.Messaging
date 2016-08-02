@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Ve messaging EventHubs package</title>
+    <authors>Diego Luiz, Juanjo Cerezuela, Gabriel Nepomuceno</authors>
+    <owners>Ve Interactive</owners>
+    <projectUrl>https://github.com/ve-interactive/Ve.Messaging</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains the concrete classes to use the Azure Event Hubs</description>
+    <copyright>Copyright 2016</copyright>
+    <releaseNotes>See CHANGELOG.md in the project's GitHub repository.</releaseNotes>
+    <tags>messaging</tags>
+    <dependencies />
+  </metadata>
+</package>

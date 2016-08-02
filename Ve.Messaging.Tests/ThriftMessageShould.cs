@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Shouldly;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
-using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Model;
 using Ve.Messaging.Samples;
+using Ve.Messaging.Thrift;
 
 namespace Ve.Messaging.Tests
 {

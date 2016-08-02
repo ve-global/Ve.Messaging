@@ -9,6 +9,7 @@ using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher;
 using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Samples;
+using Ve.Messaging.Thrift;
 
 namespace Ve.Messaging.SampleApp
 {

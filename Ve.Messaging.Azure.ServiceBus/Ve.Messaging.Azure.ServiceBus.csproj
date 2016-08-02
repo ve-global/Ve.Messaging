@@ -60,7 +60,6 @@
     <Compile Include="Infrastructure\BrokeredMessageBuilder.cs" />
     <Compile Include="Consumer\ConsumerConfiguration.cs" />
     <Compile Include="Infrastructure\ISerializer.cs" />
-    <Compile Include="Infrastructure\ThriftSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Publisher\Interfaces\ITopicClientCreator.cs" />
     <Compile Include="Publisher\Interfaces\ITopicCreator.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Thrift\Interfaces\IThriftPublisher.cs" />
     <Compile Include="Thrift\Interfaces\IThriftConsumer.cs" />
     <Compile Include="Thrift\ThriftConsumer.cs" />
-    <Compile Include="Thrift\ThriftMessage.cs" />
     <Compile Include="Thrift\ThriftPublisher.cs" />
     <Compile Include="Publisher\TopicClientCreator.cs" />
     <Compile Include="Publisher\TopicCreator.cs" />
@@ -83,6 +81,10 @@
     <Compile Include="Publisher\Wrapper\TopicClientWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ve.Messaging.Thrift\Ve.Messaging.Thrift.csproj">
+      <Project>{20D03F2E-1BC9-4A3E-9CCC-12B52EE3A100}</Project>
+      <Name>Ve.Messaging.Thrift</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ve.Messaging\Ve.Messaging.csproj">
       <Project>{611aa996-567c-4e6b-a8d3-de487e305030}</Project>
       <Name>Ve.Messaging</Name>
