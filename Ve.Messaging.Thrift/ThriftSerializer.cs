@@ -6,7 +6,7 @@ namespace Ve.Messaging.Thrift
 {
     public static class ThriftSerializer 
     {
-        public static Stream Serialize<T>(object value)
+        public static Stream Serialize(object value)
         {
             using (TMemoryBuffer trans = new TMemoryBuffer())
             {
@@ -18,7 +18,7 @@ namespace Ve.Messaging.Thrift
                 return memoryStream;
             }
         }
-        public static byte[] SerializeGetBytes<T>(object value)
+        public static byte[] SerializeGetBytes(object value)
         {
             using (TMemoryBuffer trans = new TMemoryBuffer())
             {

@@ -41,7 +41,7 @@ namespace Ve.Messaging.Tests
         public void Set_Message()
         {
             var houseDto = GetHouseDto();
-            var bodyStream = ThriftSerializer.Serialize<HouseDto>(houseDto);
+            var bodyStream = ThriftSerializer.Serialize(houseDto);
             var message = new Message(bodyStream);
             
             var thriftMessage = new ThriftMessage<HouseDto>(message);
@@ -59,7 +59,7 @@ namespace Ve.Messaging.Tests
             };
             string sessionId = Guid.NewGuid().ToString();
             string label = Guid.NewGuid().ToString();
-            var bodyStream = ThriftSerializer.Serialize<HouseDto>(houseDto);
+            var bodyStream = ThriftSerializer.Serialize(houseDto);
             var message = new Message(bodyStream, sessionId, label, properties);
 
             var thriftMessage = new ThriftMessage<HouseDto>(message);

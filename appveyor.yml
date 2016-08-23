@@ -1,4 +1,7 @@
-version: 0.2.{build}
+branches:
+  only:
+    - master
+version: 0.3.{build}
 configuration: Release
 skip_tags: true
 environment:
@@ -31,7 +34,7 @@ deploy:
     secure: 9VQU1tM1eJOhWwZvwKm00ndEGr+GPyeYm49nWZPWDDmNvKYe4z+mmeGtHe+R9GDh 
   skip_symbols: false
   artifact: /.*\.nupkg/
-on_success:
+after_deploy:
     - git config --global credential.helper store
     - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:git_token):x-oauth-basic@github.com`n"
     - git tag -a release/%APPVEYOR_BUILD_VERSION% -m "Added tag"
