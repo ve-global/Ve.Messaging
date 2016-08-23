@@ -9,8 +9,8 @@ namespace Ve.Messaging.Thrift
         public ThriftMessage(T content,
                              string sessionId = "",
                              string label = "",
-                             Dictionary<string, object> properties = null)
-                             : base(ThriftSerializer.Serialize<T>(content), sessionId, label, properties)
+                             IDictionary<string, object> properties = null)
+                             : base(ThriftSerializer.Serialize(content), sessionId, label, properties)
         {
             Content = content;
         }
@@ -18,7 +18,7 @@ namespace Ve.Messaging.Thrift
         public ThriftMessage(Stream bodyContent,
                              string sessionId = "",
                              string label = "",
-                             Dictionary<string, object> properties = null)
+                             IDictionary<string, object> properties = null)
                              : base(bodyContent, sessionId, label, properties)
         {
             Content = ThriftSerializer.Deserialize<T>(bodyContent);

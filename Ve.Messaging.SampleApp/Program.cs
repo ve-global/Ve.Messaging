@@ -11,6 +11,7 @@ using Ve.Messaging.Azure.ServiceBus.Thrift;
 using Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces;
 using Ve.Messaging.Samples;
 using Ve.Messaging.Thrift;
+using Ve.Metrics.StatsDClient.Abstract;
 
 namespace Ve.Messaging.SampleApp
 {
@@ -39,7 +40,7 @@ namespace Ve.Messaging.SampleApp
 
                     foreach (var message in messages)
                     {
-                        Console.WriteLine($"House: {message.Content.Name} of {message.Content.Owner}");
+                        Console.WriteLine($"House: {message.Name} of {message.Owner}");
                     }
                 }
             });
@@ -74,7 +75,7 @@ namespace Ve.Messaging.SampleApp
             }
         }
 
-        private static PublisherFactory GetPublisher(VeStatsDClient client)
+        private static PublisherFactory GetPublisher(IVeStatsDClient client)
         {
             var publisherFactory = new PublisherFactory(
                 client,

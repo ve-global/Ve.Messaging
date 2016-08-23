@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces;
+using Ve.Messaging.Model;
 using Ve.Messaging.Publisher;
-using Ve.Messaging.Thrift;
 
 namespace Ve.Messaging.Azure.ServiceBus.Thrift
 {
@@ -15,12 +15,12 @@ namespace Ve.Messaging.Azure.ServiceBus.Thrift
             _publisher = publisher;
         }
 
-        public Task SendAsync<T>(ThriftMessage<T> thriftMessage) where T : new()
+        public Task SendAsync(Message message)
         {
-            return _publisher.SendAsync(thriftMessage);
+            return _publisher.SendAsync(message);
         }
 
-        public async Task SendBatchAsync<T>(IEnumerable<ThriftMessage<T>> messages) where T : new()
+        public async Task SendBatchAsync(IEnumerable<Message> messages)
         {
             foreach (var message in messages)
             {
