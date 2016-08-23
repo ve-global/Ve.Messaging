@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Azure.ServiceBus.Publisher.Interfaces;
@@ -34,10 +35,14 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
 
         public async Task SendBatchAsync(IEnumerable<Message> messages)
         {
+            ICollection<Task> tasks = new List<Task>();
+
             foreach (var message in messages)
             {
-                await SendAsync(message).ConfigureAwait(false);
+                tasks.Add(SendAsync(message));
             }
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
     }
 }
