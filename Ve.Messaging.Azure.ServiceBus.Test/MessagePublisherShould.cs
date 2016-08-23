@@ -11,7 +11,7 @@ using Ve.Messaging.Model;
 
 namespace Ve.Messaging.Azure.ServiceBus.Test
 {
-    public class MessagePublisherTest
+    public class MessagePublisherShould
     {
         [Test]
         public async Task Should_send_messages_in_batch()

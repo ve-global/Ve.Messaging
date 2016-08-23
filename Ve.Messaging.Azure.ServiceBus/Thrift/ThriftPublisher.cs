@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces;
 using Ve.Messaging.Model;
@@ -22,10 +23,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Thrift
 
         public async Task SendBatchAsync(IEnumerable<Message> messages)
         {
-            foreach (var message in messages)
-            {
-                await SendAsync(message).ConfigureAwait(false);
-            }
+            await Task.WhenAll(messages.Select(SendAsync)).ConfigureAwait(false);
         }
     }
 }

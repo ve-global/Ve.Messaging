@@ -62,8 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessagePublisherTest.cs" />
+    <Compile Include="MessagePublisherShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThriftPublisherShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
