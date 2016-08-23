@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
+namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class ConsumerConfiguration
     {
