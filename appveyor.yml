@@ -22,7 +22,7 @@ build:
   publish_nuget: true
   verbosity: minimal 
 test_script:
-  - nunit-console Ve.Messaging.Tests\bin\Release\Ve.Messaging.Tests.dll
+  - nunit-console Ve.Messaging.Tests\bin\Release\Ve.Messaging.Tests.dll Ve.Messaging.Azure.ServiceBus.Test\bin\Release\Ve.Messaging.Azure.ServiceBus.Test.dll
 artifacts:
 - path: Ve.Messaging.*.nupkg
   name: NuGet Package
