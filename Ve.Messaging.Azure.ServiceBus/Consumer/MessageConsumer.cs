@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using Ve.Messaging.Consumer;
 using Ve.Messaging.Model;
-using Ve.Messaging.Serializer;
 
 namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
@@ -34,6 +33,11 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
             }
 
             return messages;
+        }
+
+        public void Dispose()
+        {
+            _client.Close();
         }
     }
 }
