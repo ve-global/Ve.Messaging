@@ -70,6 +70,7 @@
     <Compile Include="Publisher\ServiceBusPublisherStrategy.cs" />
     <Compile Include="Thrift\Interfaces\IThriftPublisher.cs" />
     <Compile Include="Thrift\Interfaces\IThriftConsumer.cs" />
+    <Compile Include="Thrift\Interfaces\ThriftMessageConsumerExts.cs" />
     <Compile Include="Thrift\ThriftConsumer.cs" />
     <Compile Include="Thrift\ThriftPublisher.cs" />
     <Compile Include="Publisher\TopicClientCreator.cs" />

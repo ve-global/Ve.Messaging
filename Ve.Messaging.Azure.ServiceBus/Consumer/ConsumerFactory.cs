@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
-using Ve.Messaging.Azure.ServiceBus.Infrastructure;
 using Ve.Messaging.Consumer;
 
 namespace Ve.Messaging.Azure.ServiceBus.Consumer

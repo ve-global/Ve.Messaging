@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,8 @@ using Ve.Messaging.Publisher;
 
 namespace Ve.Messaging.Azure.ServiceBus.Thrift
 {
-    public class ThriftPublisher : IThriftPublisher
+    [Obsolete("Redundant interface, prefer IMessagePublisher")]
+    public class ThriftPublisher : IThriftPublisher // TODO: why does this exist? Does it even do anything different to, IMessagePublisher? Seems to prevent the EventHub behaviour
     {
         private readonly IMessagePublisher _publisher;
 
