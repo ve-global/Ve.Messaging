@@ -44,11 +44,13 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
         {
             var message = _client.Peek();
 
-            return new Message(
-                message.GetBody<Stream>(),
-                message.SessionId,
-                message.Label,
-                message.Properties);
+            return message == null
+                ? null
+                : new Message(
+                    message.GetBody<Stream>(),
+                    message.SessionId,
+                    message.Label,
+                    message.Properties);
         }
     }
 }
