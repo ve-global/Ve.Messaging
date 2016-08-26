@@ -39,5 +39,16 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
         {
             _client.Close();
         }
+
+        public Message Peek()
+        {
+            var message = _client.Peek();
+
+            return new Message(
+                message.GetBody<Stream>(),
+                message.SessionId,
+                message.Label,
+                message.Properties);
+        }
     }
 }
