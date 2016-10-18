@@ -17,9 +17,9 @@ namespace Ve.Messaging.Azure.ServiceBus.Thrift
             _consumer = consumer;
         }
 
-        public IEnumerable<T> RetrieveMessages<T>(int messageAmount, int timeout) where T : new()
+        public IEnumerable<T> RetrieveMessages<T>(int messageAmount, int timeout, string exceptLabel = null) where T : new()
         {
-            return _consumer.RetrieveMessages(messageAmount, timeout).Select(
+            return _consumer.RetrieveMessages(messageAmount, timeout, exceptLabel).Select(
                 m => ThriftSerializer.Deserialize<T>(m.BodyStream));
         }
     }
