@@ -19,6 +19,11 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
             _creator = creator;
         }
 
+        public ITopicClientWrapper CreateTopicClient(TopicConfiguration config)
+        {
+            return CreateTopicClient(config, null);
+        }
+
         public ITopicClientWrapper CreateTopicClient(TopicConfiguration config, IVeStatsDClient statsDClient)
         {
             lock (_lock)
