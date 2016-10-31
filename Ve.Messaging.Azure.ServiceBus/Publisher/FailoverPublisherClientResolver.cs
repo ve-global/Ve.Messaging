@@ -14,6 +14,15 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
         private readonly ITopicClientWrapper _primaryClient;
         private readonly ITopicClientWrapper _failoverClient;
         private readonly IVeStatsDClient _statsDClient;
+
+        public FailoverPublisherClientResolver(
+            ITopicClientWrapper primaryClient,
+            ITopicClientWrapper failoverClient)
+        {
+            _primaryClient = primaryClient;
+            _failoverClient = failoverClient;
+        }
+
         public FailoverPublisherClientResolver(
             ITopicClientWrapper primaryClient,
             ITopicClientWrapper failoverClient,
@@ -30,7 +39,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
             {
                 return _primaryClient;
             }
-            _statsDClient.LogCount(FAILOVER_METRIC);
+            _statsDClient?.LogCount(FAILOVER_METRIC);
             TryToExitFailover();
             return _failoverClient;
         }

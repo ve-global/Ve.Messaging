@@ -12,6 +12,11 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper
         private readonly IVeStatsDClient _statsd;
         private static bool _isHealthy = true;
 
+        public TopicClientWrapper(TopicClient topicClient)
+        {
+            _topicClient = topicClient;
+        }
+
         public TopicClientWrapper(TopicClient topicClient, IVeStatsDClient statsd)
         {
             _topicClient = topicClient;
@@ -21,8 +26,8 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper
         public virtual async Task SendAsync(BrokeredMessage message)
         {
             var stopwatch = Stopwatch.StartNew();
-            _statsd.LogCount("dependencies.servicebus.send");
-            _statsd.LogGauge("dependencies.servicebus.messagesize", (int)message.Size);
+            _statsd?.LogCount("dependencies.servicebus.send");
+            _statsd?.LogGauge("dependencies.servicebus.messagesize", (int)message.Size);
 
             try
             {
@@ -35,7 +40,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher.Wrapper
             }
 
             stopwatch.Stop();
-            _statsd.LogTiming("dependencies.servicebus.send", stopwatch.ElapsedMilliseconds);
+            _statsd?.LogTiming("dependencies.servicebus.send", stopwatch.ElapsedMilliseconds);
         }
 
         public bool IsHealthy()

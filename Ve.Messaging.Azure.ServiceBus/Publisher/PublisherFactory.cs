@@ -10,6 +10,11 @@ namespace Ve.Messaging.Azure.ServiceBus.Publisher
         private readonly IVeStatsDClient _statsDClient;
         private readonly ITopicClientCreator _topicClientCreator;
 
+        public PublisherFactory(ITopicClientCreator topicClientCreator)
+        {
+            _topicClientCreator = topicClientCreator;
+        }
+
         public PublisherFactory(IVeStatsDClient statsDClient, ITopicClientCreator topicClientCreator)
         {
             _statsDClient = statsDClient;
