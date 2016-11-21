@@ -19,6 +19,10 @@ namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
 
         private static void AddProperties(Message message, BrokeredMessage brokeredMessage)
         {
+            // for compatibility with AMQP consumers
+            brokeredMessage.Properties.Add("Label", message.Label);
+            brokeredMessage.Properties.Add("SessionId", message.SessionId);
+
             if (message.Properties != null && message.Properties.Count > 0)
             {
                 foreach (var item in message.Properties)
