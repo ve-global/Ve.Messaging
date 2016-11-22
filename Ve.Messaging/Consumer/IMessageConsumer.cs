@@ -6,7 +6,7 @@ namespace Ve.Messaging.Consumer
 {
     public interface IMessageConsumer : IDisposable
     {
-        IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout);
+        IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout, string exceptLabel = null);
         Message Peek();
     }
 }
