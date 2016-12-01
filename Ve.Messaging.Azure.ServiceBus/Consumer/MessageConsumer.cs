@@ -1,7 +1,9 @@
 using Microsoft.ServiceBus.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Ve.Messaging.Consumer;
 using Ve.Messaging.Model;
 
@@ -18,18 +20,23 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 
         public IEnumerable<Message> RetrieveMessages(int messageAmount, int timeout)
         {
-            var brokeredMessages = _client.ReceiveBatch(messageAmount, TimeSpan.FromSeconds(timeout));
+            var stopwatch = Stopwatch.StartNew();
             var messages = new List<Message>();
+            var tm = TimeSpan.FromSeconds(timeout);
 
-            foreach (var brokeredMessage in brokeredMessages)
+            while (messages.Count < messageAmount && stopwatch.Elapsed < tm)
             {
-                var stream = brokeredMessage.GetBody<Stream>();
-                Message message = new Message(stream,
-                                              brokeredMessage.SessionId,
-                                              brokeredMessage.Label,
-                                              brokeredMessage.Properties);
+                var brokeredMessages = _client.ReceiveBatch(messageAmount, tm);
 
-                messages.Add(message);
+                messages.AddRange(
+                    from brokeredMessage in brokeredMessages
+                    let stream = brokeredMessage.GetBody<Stream>()
+                    select new Message(
+                        stream,
+                        brokeredMessage.SessionId,
+                        brokeredMessage.Label,
+                        brokeredMessage.Properties)
+                );
             }
 
             return messages;
