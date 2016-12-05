@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Ve.Messaging.Model
@@ -8,16 +9,23 @@ namespace Ve.Messaging.Model
         public Message(Stream bodyStream,
                        string sessionId = "",
                        string label = "",
-                       IDictionary<string, object> properties = null)
+                       string id = "",
+                       IDictionary<string, object> properties = null,
+                       Action complete = null)
         {
             BodyStream = bodyStream;
+            Id = id;
             SessionId = sessionId;
             Label = label;
             Properties = properties;
+            Complete = complete;
         }
+
+        public string Id { get; }
         public Stream BodyStream { get; }
         public string Label { get; }
         public string SessionId { get; }
-        public IDictionary<string, object> Properties { get; } 
+        public IDictionary<string, object> Properties { get; }
+        public Action Complete { get; }
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="Publisher\Wrapper\ITopicClientWrapper.cs" />
     <Compile Include="Publisher\SimplePublisherClientResolver.cs" />
     <Compile Include="Publisher\Wrapper\TopicClientWrapper.cs" />
+    <Compile Include="Thrift\TransientMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ve.Messaging.Thrift\Ve.Messaging.Thrift.csproj">
