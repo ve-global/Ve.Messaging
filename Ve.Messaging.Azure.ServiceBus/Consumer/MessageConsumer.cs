@@ -11,7 +11,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 {
     public class MessageConsumer : IMessageConsumer
     {
-        private readonly SubscriptionClient _client;
+        protected readonly SubscriptionClient _client;
 
         public MessageConsumer(SubscriptionClient client)
         {
@@ -26,29 +26,17 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
 
             while (messages.Count < messageAmount && stopwatch.Elapsed < tm)
             {
-                var brokeredMessages = _client.ReceiveBatch(messageAmount, tm);
-                messages.AddRange(brokeredMessages.Select(x => new Message(x.GetBody<Stream>(), x.SessionId, x.Label, x.MessageId, x.Properties)));
+                var brokeredMessages = ReceiveMessages(messageAmount, tm);
+                messages.AddRange(brokeredMessages);
             }
 
             return messages;
         }
 
-        public IEnumerable<Message> PeekAndLockMessages(int messageAmount, int timeout)
+        protected virtual IEnumerable<Message> ReceiveMessages(int messageAmount, TimeSpan tm)
         {
-            var stopwatch = Stopwatch.StartNew();
-            var messages = new List<Message>();
-            var tm = TimeSpan.FromSeconds(timeout);
-
-            while (messages.Count < messageAmount && stopwatch.Elapsed < tm)
-            {
-                var brokeredMessages = _client.ReceiveBatch(messageAmount, tm)
-                                              .Where(x => x.State == MessageState.Active)
-                                              .Select(x => new Message(x.GetBody<Stream>(), x.SessionId, x.Label, x.MessageId, x.Properties, x.Complete));
-
-                messages.AddRange(brokeredMessages);
-            }
-
-            return messages;
+            return _client.ReceiveBatch(messageAmount, tm)
+                .Select(x => new Message(x.GetBody<Stream>(), x.SessionId, x.Label, x.MessageId, x.Properties));
         }
 
         public Message Peek()

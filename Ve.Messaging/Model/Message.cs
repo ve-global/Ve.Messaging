@@ -6,6 +6,8 @@ namespace Ve.Messaging.Model
 {
     public class Message
     {
+        private readonly Action _complete;
+
         public Message(Stream bodyStream,
                        string sessionId = "",
                        string label = "",
@@ -18,7 +20,7 @@ namespace Ve.Messaging.Model
             SessionId = sessionId;
             Label = label;
             Properties = properties;
-            Complete = complete;
+            _complete = complete;
         }
 
         public string Id { get; }
@@ -26,6 +28,10 @@ namespace Ve.Messaging.Model
         public string Label { get; }
         public string SessionId { get; }
         public IDictionary<string, object> Properties { get; }
-        public Action Complete { get; }
+
+        public Action Complete
+        {
+            get { return _complete ?? (() => { }); }
+        }
     }
 }

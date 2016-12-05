@@ -14,10 +14,10 @@ namespace Ve.Messaging.Azure.ServiceBus.Thrift.Interfaces
             return consumer.RetrieveMessages(messageAmount, timeout).Select(m => ThriftSerializer.Deserialize<T>(m.BodyStream));
         }
 
-        public static IEnumerable<TransientMessage<T>> PeekAndLockMessages<T>(this IMessageConsumer consumer, int messageAmount, int timeout) where T : TBase, new()
+        public static IEnumerable<TransactionalMessage<T>> RetrieveTransactionalMessages<T>(this IMessageConsumer consumer, int messageAmount, int timeout) where T : TBase, new()
         {
-            return consumer.PeekAndLockMessages(messageAmount, timeout)
-                           .Select(x=> new TransientMessage<T>(ThriftSerializer.Deserialize<T>(x.BodyStream), x.Complete));
+            return consumer.RetrieveMessages(messageAmount, timeout)
+                           .Select(x=> new TransactionalMessage<T>(ThriftSerializer.Deserialize<T>(x.BodyStream), x.Complete));
         }
     }
 }

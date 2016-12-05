@@ -23,7 +23,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Consumer
             var description = GetSubscriptionDescription(consumerConfiguration.TopicPath, consumerConfiguration.SubscriptionName, consumerConfiguration.TimeToExpire);
 
             var client = GetSubscriptionClient(consumerConfiguration.TopicPath, consumerConfiguration.SubscriptionName, namespaceManager, description, consumerConfiguration.SqlFilter, ReceiveMode.PeekLock);
-            var result = new MessageConsumer(client);
+            var result = new TransactionalMessageConsumer(client);
             return result;
         }
 
