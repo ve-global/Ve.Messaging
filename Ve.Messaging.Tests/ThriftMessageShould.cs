@@ -29,11 +29,13 @@ namespace Ve.Messaging.Tests
             };
             string sessionId = Guid.NewGuid().ToString();
             string label = Guid.NewGuid().ToString();
+            string messageId = Guid.NewGuid().ToString();
             var houseDto = GetHouseDto();
-            var thriftMessage = new ThriftMessage<HouseDto>(houseDto, sessionId, label, properties);
+            var thriftMessage = new ThriftMessage<HouseDto>(houseDto, sessionId, label, messageId, properties);
 
             thriftMessage.SessionId.ShouldBe(sessionId);
             thriftMessage.Label.ShouldBe(label);
+            thriftMessage.Id.ShouldBe(messageId);
             AssertProperties(thriftMessage, properties);
         }
 
@@ -43,7 +45,7 @@ namespace Ve.Messaging.Tests
             var houseDto = GetHouseDto();
             var bodyStream = ThriftSerializer.Serialize(houseDto);
             var message = new Message(bodyStream);
-            
+
             var thriftMessage = new ThriftMessage<HouseDto>(message);
 
             thriftMessage.BodyStream.ShouldNotBe(null);
@@ -59,19 +61,20 @@ namespace Ve.Messaging.Tests
             };
             string sessionId = Guid.NewGuid().ToString();
             string label = Guid.NewGuid().ToString();
+            string messageId = Guid.NewGuid().ToString();
             var bodyStream = ThriftSerializer.Serialize(houseDto);
-            var message = new Message(bodyStream, sessionId, label, properties);
+            var message = new Message(bodyStream, sessionId, label, messageId, properties);
 
             var thriftMessage = new ThriftMessage<HouseDto>(message);
 
             thriftMessage.Label.ShouldBe(label);
             thriftMessage.SessionId.ShouldBe(sessionId);
-            thriftMessage.Label.ShouldBe(label);
+            thriftMessage.Id.ShouldBe(messageId);
             AssertProperties(thriftMessage, properties);
         }
 
 
-        private static void AssertProperties(ThriftMessage<HouseDto> thriftMessage, 
+        private static void AssertProperties(ThriftMessage<HouseDto> thriftMessage,
                                              Dictionary<string, object> properties)
         {
             thriftMessage.Properties.Count.ShouldBe(properties.Count);

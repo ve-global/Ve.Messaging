@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Consumer\ConsumerFactory.cs" />
     <Compile Include="Consumer\MessageConsumer.cs" />
+    <Compile Include="Consumer\TransactionalMessageConsumer.cs" />
     <Compile Include="Executors\ITimer.cs" />
     <Compile Include="Executors\TimerWrapper.cs" />
     <Compile Include="Infrastructure\BrokeredMessageBuilder.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Publisher\Wrapper\ITopicClientWrapper.cs" />
     <Compile Include="Publisher\SimplePublisherClientResolver.cs" />
     <Compile Include="Publisher\Wrapper\TopicClientWrapper.cs" />
+    <Compile Include="Thrift\TransactionalMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ve.Messaging.Thrift\Ve.Messaging.Thrift.csproj">

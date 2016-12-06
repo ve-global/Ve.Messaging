@@ -13,12 +13,14 @@ namespace Ve.Messaging.Azure.ServiceBus.Test
     {
         private string _sessionId;
         private string _label;
+        private string _messageId;
 
         [SetUp]
         public void Setup()
         {
             _sessionId = Guid.NewGuid().ToString();
             _label = Guid.NewGuid().ToString();
+            _messageId = Guid.NewGuid().ToString();
         }
         
         [Test]
@@ -56,7 +58,7 @@ namespace Ve.Messaging.Azure.ServiceBus.Test
         [Test]
         public void It_should_set_the_custom_properties()
         {
-            var result = BrokeredMessageBuilder.SerializeToBrokeredMessage(new Message(new MemoryStream(), _sessionId, _label, new Dictionary<string, object>()
+            var result = BrokeredMessageBuilder.SerializeToBrokeredMessage(new Message(new MemoryStream(), _sessionId, _label, _messageId, new Dictionary<string, object>()
             {
                 { "foo", "bar" }
             }));
