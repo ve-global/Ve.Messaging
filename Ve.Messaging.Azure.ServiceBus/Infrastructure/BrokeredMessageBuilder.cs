@@ -27,7 +27,8 @@ namespace Ve.Messaging.Azure.ServiceBus.Infrastructure
             {
                 foreach (var item in message.Properties)
                 {
-                    brokeredMessage.Properties.Add(item.Key, item.Value);
+                    if (!brokeredMessage.Properties.ContainsKey(item.Key))
+                        brokeredMessage.Properties.Add(item.Key, item.Value);
                 }
             }
         }
